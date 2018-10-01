@@ -27,17 +27,18 @@ You're reading it! Below I describe how I addressed each rubric point and where 
 ### Explain the Starter Code
 
 #### 1. Explain the functionality of what's provided in `motion_planning.py` and `planning_utils.py`
-These scripts contain a basic planning implementation that includes...
+These scripts contain a basic planning implementation that includes using `A*` to navigate a grid to a hard-coded location.
 
-And here's a lovely image of my results (ok this image has nothing to do with it, but it's a nice example of how to include images in your writeup!)
-![Top Down View](./misc/high_up.png)
+`motion_planning.py` comes with an implementation of an event-driven state machine that handles all the transitions for arming, takeoff, and navigating to waypoints. The `plan_path()` function sends a list of waypoints to the state machine to execute.
 
-Here's | A | Snappy | Table
---- | --- | --- | ---
-1 | `highlight` | **bold** | 7.41
-2 | a | b | c
-3 | *italic* | text | 403
-4 | 2 | 3 | abcd
+`planning_utils.py` comes with some helper fuctions to help with the planning of a path.
+* `create_grid()` creates a grid of the 2D configuration space at a certain altitude. In this grid, '0's represent valid positions for the drone while '1's represend invalid positions.
+* `Action` enum represents the four actions the drone can take in the grid. This will need to be expanded to allow diagonal movement.
+* `valid_actions()` returns a list of the valid actions the drone can take from a give position in the grid. Again, this will need to be modified for diagonal movement.
+* `a_star()` is a basic implementation of `A*` in a grid.
+* `heuristic()` gives a simple euclidean distance cost from a position to the goal.
+
+
 
 ### Implementing Your Path Planning Algorithm
 
