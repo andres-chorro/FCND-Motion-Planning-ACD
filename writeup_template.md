@@ -43,14 +43,16 @@ These scripts contain a basic planning implementation that includes using `A*` t
 ### Implementing Your Path Planning Algorithm
 
 #### 1. Set your global home position
-Here students should read the first line of the csv file, extract lat0 and lon0 as floating point values and use the self.set_home_position() method to set global home. Explain briefly how you accomplished this in your code.
+I did this by reading the first line using standard file `open()`, and then by splitting first at the comma, and then at the space. Casting the second element of the resulting strings to floats gives the result:
+```python
+with open('colliders.csv') as f:
+    first_line = f.readline()
+coord_strings = first_line.split(',')
+lat0, lon0 = [float(x.split()[1]) for x in coord_strings]
+```
 
 #### 2. Set your current local position
 Here as long as you successfully determine your local position relative to global home you'll be all set. Explain briefly how you accomplished this in your code.
-
-
-Meanwhile, here's a picture of me flying through the trees!
-![Forest Flying](./misc/in_the_trees.png)
 
 #### 3. Set grid start position from local position
 This is another step in adding flexibility to the start location. As long as it works you're good to go!
