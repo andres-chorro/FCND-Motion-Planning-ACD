@@ -128,9 +128,8 @@ class MotionPlanning(Drone):
         # set home position
         self.set_home_position(lon0, lat0, 0)
 
-        # TODO: retrieve current global position
         initial_global_pos = self.global_position
-        # TODO: convert to current local position using global_to_local()
+        # convert to current local position
         initial_local_pos = global_to_local(initial_global_pos, self.global_home)
 
         print('global home {0}, position {1}, local position {2}'.format(self.global_home, self.global_position,
@@ -158,10 +157,9 @@ class MotionPlanning(Drone):
         grid_goal = (int(round(local_goal[0] - north_offset)),
                      int(round(local_goal[1] - east_offset)))
         
-        # Run A* to find a path from start to goal
-        # TODO: add diagonal motions with a cost of sqrt(2) to your A* implementation
-        # or move to a different search space such as a graph (not done here)
+
         print('Local Start and Goal: ', grid_start, grid_goal)
+        
         path, _ = a_star(grid, heuristic, grid_start, grid_goal)
         # TODO: prune path to minimize number of waypoints
         # TODO (if you're feeling ambitious): Try a different approach altogether!
