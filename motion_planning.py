@@ -143,13 +143,21 @@ class MotionPlanning(Drone):
         print("North offset = {0}, east offset = {1}".format(north_offset, east_offset))
         
         # Define starting point on the grid 
-        grid_start = (int(round(self.local_position[0]-north_offset)),
-                      int(round(self.local_position[1]-east_offset)))
+        grid_start = (int(round(self.local_position[0] - north_offset)),
+                      int(round(self.local_position[1] - east_offset)))
+        
+        lat_goal = 37.793
+        lon_goal = -122.397450
+        goal_position = [lon_goal, lat_goal, 0]
+
         
         # Set goal as some arbitrary position on the grid
-        grid_goal = (grid_start[0] + 70, grid_start[1] + 70)
+        # grid_goal = (grid_start[0] + 70, grid_start[1] + 70)
         # TODO: adapt to set goal as latitude / longitude position and convert
-
+        local_goal = global_to_local(goal_position, self.global_home)
+        grid_goal = (int(round(local_goal[0] - north_offset)),
+                     int(round(local_goal[1] - east_offset)))
+        
         # Run A* to find a path from start to goal
         # TODO: add diagonal motions with a cost of sqrt(2) to your A* implementation
         # or move to a different search space such as a graph (not done here)
