@@ -145,13 +145,12 @@ class MotionPlanning(Drone):
         grid_start = (int(round(self.local_position[0] - north_offset)),
                       int(round(self.local_position[1] - east_offset)))
         
-        lat_goal = 37.792650
-        lon_goal = -122.397600
+        lat_goal = 37.794173
+        lon_goal = -122.399278
         goal_position = [lon_goal, lat_goal, 0]
 
         
         # Set goal as some arbitrary position on the grid
-        # grid_goal = (grid_start[0] + 70, grid_start[1] + 70)
         # TODO: adapt to set goal as latitude / longitude position and convert
         local_goal = global_to_local(goal_position, self.global_home)
         grid_goal = (int(round(local_goal[0] - north_offset)),
@@ -167,7 +166,6 @@ class MotionPlanning(Drone):
         waypoints = [[p[0] + north_offset, p[1] + east_offset, TARGET_ALTITUDE, 0] for p in path]
         # Set self.waypoints
         self.waypoints = waypoints
-        # TODO: send waypoints to sim (this is just for visualization of waypoints)
         self.send_waypoints()
 
     def start(self):
