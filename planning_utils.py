@@ -42,7 +42,6 @@ def create_grid(data, drone_altitude, safety_distance):
     return grid, int(north_min), int(east_min)
 
 ROOT_TWO = 1.4142857
-# Assume all actions cost the same.
 class Action(Enum):
     """
     An action is represented by a 3 element tuple.
@@ -182,20 +181,6 @@ def prune_path(path):
 def collinearity_int(p1, p2, p3): 
     determinant = p1[0]*(p2[1] - p3[1]) + p2[0]*(p3[1] - p1[1]) + p3[0]*(p1[1] - p2[1])
     if determinant == 0:
-        return True
-    else:
-        return False
-
-
-# Define a simple function to add a z coordinate of 1
-def point(p):
-    return np.array([p[0], p[1], 1.])
-
-def collinearity_float(p1, p2, p3, epsilon=1e-6): 
-    collinear = False
-    mat = np.vstack((point(p1), point(p2), point(p3)))
-    det = np.linalg.det(mat)
-    if det < epsilon:
         return True
     else:
         return False

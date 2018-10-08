@@ -145,13 +145,13 @@ class MotionPlanning(Drone):
         grid_start = (int(round(self.local_position[0] - north_offset)),
                       int(round(self.local_position[1] - east_offset)))
         
+
+        # Set goal as some arbitrary position on the grid
         lat_goal = 37.794173
         lon_goal = -122.399278
         goal_position = [lon_goal, lat_goal, 0]
 
-        
-        # Set goal as some arbitrary position on the grid
-        # TODO: adapt to set goal as latitude / longitude position and convert
+        # adapt to set goal as latitude / longitude position and convert
         local_goal = global_to_local(goal_position, self.global_home)
         grid_goal = (int(round(local_goal[0] - north_offset)),
                      int(round(local_goal[1] - east_offset)))
