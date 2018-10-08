@@ -114,4 +114,4 @@ path = prune_path(path)
 ```
 
 Here's a picture a test flightpath:
-![Quad Image](path.png)
+![Path Image](./path.png)
