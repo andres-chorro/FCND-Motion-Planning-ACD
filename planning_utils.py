@@ -41,7 +41,7 @@ def create_grid(data, drone_altitude, safety_distance):
 
     return grid, int(north_min), int(east_min)
 
-
+ROOT_TWO = 1.4142857
 # Assume all actions cost the same.
 class Action(Enum):
     """
@@ -51,15 +51,16 @@ class Action(Enum):
     to the current grid position. The third and final value
     is the cost of performing the action.
     """
+    
 
     WEST = (0, -1, 1)
     EAST = (0, 1, 1)
     NORTH = (-1, 0, 1)
     SOUTH = (1, 0, 1)
-    NORTHEAST = (-1, 1, math.sqrt(1))
-    NORTHWEST = (-1, -1, math.sqrt(1))
-    SOUTHEAST = (1, 1, math.sqrt(1))
-    SOUTHWEST = (1, -1, math.sqrt(1))
+    NORTHEAST = (-1, 1, ROOT_TWO)
+    NORTHWEST = (-1, -1, ROOT_TWO)
+    SOUTHEAST = (1, 1, ROOT_TWO)
+    SOUTHWEST = (1, -1, ROOT_TWO)
 
     @property
     def cost(self):
@@ -104,6 +105,10 @@ def valid_actions(grid, current_node):
 
 
 def a_star(grid, h, start, goal):
+
+    print('Goal Status:', grid[goal[0], goal[1]])
+    if grid[goal[0], goal[1]] == 1:
+        raise Exception('Goal is invalid')
 
     path = []
     path_cost = 0

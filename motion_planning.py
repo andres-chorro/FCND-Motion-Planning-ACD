@@ -145,8 +145,8 @@ class MotionPlanning(Drone):
         grid_start = (int(round(self.local_position[0] - north_offset)),
                       int(round(self.local_position[1] - east_offset)))
         
-        lat_goal = 37.793
-        lon_goal = -122.397450
+        lat_goal = 37.792600
+        lon_goal = -122.397490
         goal_position = [lon_goal, lat_goal, 0]
 
         
